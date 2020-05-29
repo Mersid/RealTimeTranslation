@@ -1,7 +1,6 @@
 package net.mersid.realtimetranslate;
 
 import net.fabricmc.api.ModInitializer;
-import net.mersid.realtimetranslate.translators.YandexTranslator;
 
 public class RealTimeTranslateInitializer implements ModInitializer {
 	private static boolean initialized;

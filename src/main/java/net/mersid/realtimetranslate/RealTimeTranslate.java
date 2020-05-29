@@ -7,12 +7,10 @@ import net.mersid.realtimetranslate.kms.YandexKeyManager;
 import net.mersid.realtimetranslate.translators.GoogleScrapeTranslator;
 import net.mersid.realtimetranslate.translators.YandexTranslator;
 import net.mersid.realtimetranslate.utils.ConfigurationUtils;
-import net.mersid.realtimetranslate.validators.YandexKeyValidator;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
-import java.nio.file.ClosedWatchServiceException;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,7 +22,6 @@ public enum RealTimeTranslate {
 	public NotEventHandler notEventHandler;
 	public YandexTranslator yandexTranslator;
 	public GoogleScrapeTranslator googleScrapeTranslator;
-	public YandexKeyValidator yandexKeyValidator;
 	public YandexKeyManager yandexKeyManager;
 
 	public FabricKeyBinding keybind;
@@ -46,8 +43,5 @@ public enum RealTimeTranslate {
 		threadPool = Executors.newFixedThreadPool(4);
 
 		yandexKeyManager = new YandexKeyManager(configuration.yandexApiKeys);
-
-		yandexKeyValidator = new YandexKeyValidator();
-		configuration.invalidYandexApiKeys = yandexKeyValidator.getInvalidKeys(configuration.yandexApiKeys);
 	}
 }

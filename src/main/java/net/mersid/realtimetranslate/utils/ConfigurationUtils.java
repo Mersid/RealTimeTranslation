@@ -2,6 +2,7 @@ package net.mersid.realtimetranslate.utils;
 
 import com.google.gson.JsonSyntaxException;
 import net.mersid.realtimetranslate.configuration.Configuration;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
