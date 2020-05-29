@@ -12,8 +12,6 @@ import org.lwjgl.glfw.GLFW;
 
 public class MainScreen extends Screen {
 
-	private final int TEXT_GREY_COLOR_CODE = 0xFFA0A0A0;
-
 
 	private ButtonWidget cancelButtonWidget;
 	private ButtonWidget translateButtonWidget;
@@ -46,6 +44,8 @@ public class MainScreen extends Screen {
 	@Override
 	public void render(int mouseX, int mouseY, float delta)
 	{
+		int TEXT_GREY_COLOR_CODE = 0xFFA0A0A0;
+
 		fill(0, 0, this.width, this.height, 0x7F000000); // ARGB
 
 		// Render all elements added using this.children.add

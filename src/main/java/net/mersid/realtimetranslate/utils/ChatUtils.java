@@ -23,7 +23,10 @@ public enum ChatUtils {
 		MinecraftClient.getInstance().getNetworkHandler().sendPacket(new ChatMessageC2SPacket(message));
 	}
 
-	// Null if the name cannot be retrieved (does not exist, no appropriate regex, etc)
+	/**
+	 * Uses regexes in the configuration file to attempt to retrieve the name of the player, given a chat message.
+	 * Returns null if the name cannot be retrieved (does not exist, no appropriate regex, etc)
+	 */
 	public static @Nullable String getChatMessageSender(String message)
 	{
 		for (Pattern pattern : RealTimeTranslate.INSTANCE.configuration.regexes)
