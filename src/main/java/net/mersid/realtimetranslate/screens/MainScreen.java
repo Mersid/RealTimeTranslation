@@ -57,6 +57,7 @@ public class MainScreen extends Screen {
 
 		drawCenteredString(font, title.asString(), width / 2, height / 4, 0xFFFFFFFF);
 		drawCenteredString(font, previewText, width / 2, height / 2 + 10, TEXT_GREY_COLOR_CODE);
+		drawCenteredString(font, RealTimeTranslate.INSTANCE.yandexKeyManager.getKey(), width / 2, height / 4 + font.fontHeight + 4, TEXT_GREY_COLOR_CODE);
 
 	}
 
@@ -67,14 +68,26 @@ public class MainScreen extends Screen {
 
 		String translateText = translationFieldWidget.getText();
 		if (System.currentTimeMillis() - lastKeyboardActivityTime > RealTimeTranslate.INSTANCE.configuration.previewUpdateMillis
-				&& textChangedSinceLastPreviewTranslate && translateText.length() > 0)
+				&& textChangedSinceLastPreviewTranslate)
 		{
-			RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(translateText, translation -> {
-				if (translation.wasSuccessful())
-					previewText = translation.getSuccessfulTranslation().getText();
-				else
-					ChatUtils.putChatMessage(translation.getUnsuccessfulTranslation().toString());
-			});
+			if (translateText.length() > 0)
+			{
+				RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(translateText, translation -> {
+					if (translation.wasSuccessful())
+					{
+						previewText = translation.getSuccessfulTranslation().getText();
+					}
+					else
+					{
+						ChatUtils.putChatMessage(translation.getUnsuccessfulTranslation().toString());
+						RealTimeTranslate.INSTANCE.yandexKeyManager.rotateKey();
+					}
+				});
+			}
+			else
+			{
+				previewText = "";
+			}
 
 			textChangedSinceLastPreviewTranslate = false; // Reset flag
 		}
@@ -135,7 +148,11 @@ public class MainScreen extends Screen {
 			if (translation.wasSuccessful())
 				ChatUtils.sendChatMessagePacket(translation.getSuccessfulTranslation().getText());
 			else
+			{
 				ChatUtils.putChatMessage(translation.getUnsuccessfulTranslation().toString());
+				RealTimeTranslate.INSTANCE.yandexKeyManager.rotateKey();
+			}
+
 		});
 	}
 
