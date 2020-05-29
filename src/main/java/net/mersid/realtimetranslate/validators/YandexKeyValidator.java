@@ -2,7 +2,6 @@ package net.mersid.realtimetranslate.validators;
 
 import net.mersid.realtimetranslate.RealTimeTranslate;
 import net.mersid.realtimetranslate.translations.YandexTranslation;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +9,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Deprecated
 public class YandexKeyValidator implements KeyValidator {
 	ExecutorService executorService;
 

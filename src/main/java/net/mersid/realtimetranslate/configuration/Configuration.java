@@ -19,6 +19,7 @@ public class Configuration {
 			"trnsl.1.1.20200510T224923Z.a7495263b82ed147.db1c0e64630961e39417c158005835e9aa980a05",
 			"trnsl.1.1.20200510T225044Z.51bbb94daf22147f.3572d3daecdefaa0b43713b40981d99d2b41d426");
 
+	@Deprecated
 	public transient List<String> invalidYandexApiKeys = Collections.emptyList();
 
 	public List<Pattern> regexes = Arrays.asList(

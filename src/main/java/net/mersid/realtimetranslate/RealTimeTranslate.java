@@ -3,6 +3,7 @@ package net.mersid.realtimetranslate;
 import net.fabricmc.fabric.api.client.keybinding.FabricKeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.KeyBindingRegistry;
 import net.mersid.realtimetranslate.configuration.Configuration;
+import net.mersid.realtimetranslate.kms.YandexKeyManager;
 import net.mersid.realtimetranslate.translators.GoogleScrapeTranslator;
 import net.mersid.realtimetranslate.translators.YandexTranslator;
 import net.mersid.realtimetranslate.utils.ConfigurationUtils;
@@ -24,6 +25,7 @@ public enum RealTimeTranslate {
 	public YandexTranslator yandexTranslator;
 	public GoogleScrapeTranslator googleScrapeTranslator;
 	public YandexKeyValidator yandexKeyValidator;
+	public YandexKeyManager yandexKeyManager;
 
 	public FabricKeyBinding keybind;
 
@@ -42,6 +44,8 @@ public enum RealTimeTranslate {
 		KeyBindingRegistry.INSTANCE.register(keybind);
 
 		threadPool = Executors.newFixedThreadPool(4);
+
+		yandexKeyManager = new YandexKeyManager(configuration.yandexApiKeys);
 
 		yandexKeyValidator = new YandexKeyValidator();
 		configuration.invalidYandexApiKeys = yandexKeyValidator.getInvalidKeys(configuration.yandexApiKeys);

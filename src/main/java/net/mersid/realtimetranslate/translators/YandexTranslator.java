@@ -59,15 +59,17 @@ public class YandexTranslator {
 		}
 	}
 
-	/*
-		Named terribly... but feed it a string to translate, and a lambda function
-		to make it the translator perform an action as defined by the function.
-	 */
+	/**
+	 * Named terribly... but feed it a string to translate, and a lambda function
+	 * to make it the translator perform an action as defined by the function.
+	 *
+	 * Also, in the callback, it's best to call a key rotate if something goes wrong.
+	 **/
 	public void translateWithFunctionAsync(String translateText, Consumer<YandexTranslation> callback)
 	{
 		RealTimeTranslate.INSTANCE.threadPool.execute(() -> {
 			YandexTranslation translation = RealTimeTranslate.INSTANCE.yandexTranslator.getTranslation(
-					KeyUtils.getValidYandexKey(),
+					RealTimeTranslate.INSTANCE.yandexKeyManager.getKey(),
 					RealTimeTranslate.INSTANCE.configuration.sourceLanguage,
 					RealTimeTranslate.INSTANCE.configuration.destinationLanguage,
 					translateText);
