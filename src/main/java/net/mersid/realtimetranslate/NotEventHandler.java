@@ -14,7 +14,7 @@ public class NotEventHandler {
 		if (!ChatUtils.isAlreadyTranslated(chatText.getString()) && ChatUtils.isPlayerSentMessage(strippedText))
 		{
 			RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(ChatUtils.stripPlayerTag(strippedText), translation -> {
-				if (translation.wasSuccessful())
+				if (translation.wasSuccessful() && translation.getSuccessfulTranslation().getSourceLang() != translation.getSuccessfulTranslation().getDestinationLang())
 				{
 					SuccessfulYandexTranslation successfulTranslation = translation.getSuccessfulTranslation();
 					ChatUtils.putChatMessage("§7Translated (" + successfulTranslation.getSourceLang().getDisplayLanguage() + "): " + successfulTranslation.getText());
