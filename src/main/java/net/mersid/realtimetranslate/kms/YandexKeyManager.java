@@ -42,7 +42,6 @@ public class YandexKeyManager implements KeyManager {
 			if (isKeyValid(key))
 			{
 				currentKey = key;
-				System.out.println(key);
 				break;
 			}
 		}
