@@ -9,7 +9,20 @@ public class NotEventHandler {
 
 	public void onReceiveChat(Text chatText, int chatLineId)
 	{
-		System.out.println("Chat received (" + ChatUtils.isPlayerSentMessage(chatText.asFormattedString()) + "): " + chatText.asFormattedString());
+		if (ChatUtils.isPlayerSentMessage(chatText.asFormattedString()))
+		{
+			RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(ChatUtils.stripPlayerTag(chatText.asFormattedString()), translation -> {
+				if (translation.wasSuccessful())
+				{
+					ChatUtils.putChatMessage(translation.getSuccessfulTranslation().getText());
+				}
+				else
+				{
+					ChatUtils.putChatMessage(translation.getUnsuccessfulTranslation().getMessage());
+					RealTimeTranslate.INSTANCE.yandexKeyManager.rotateKey();
+				}
+			});
+		}
 	}
 
 	public void onSendChat(String message)

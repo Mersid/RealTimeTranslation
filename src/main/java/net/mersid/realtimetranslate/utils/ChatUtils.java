@@ -48,4 +48,18 @@ public enum ChatUtils {
 		}
 		return false;
 	}
+
+	public static String stripPlayerTag(String message)
+	{
+		for (Pattern pattern : RealTimeTranslate.INSTANCE.configuration.regexes)
+		{
+			Matcher matcher = pattern.matcher(message);
+			if (matcher.find())
+			{
+				message = matcher.replaceFirst("");
+				break;
+			}
+		}
+		return message;
+	}
 }
