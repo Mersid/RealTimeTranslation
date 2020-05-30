@@ -1,6 +1,5 @@
 package net.mersid.realtimetranslate.utils;
 
-import com.sun.istack.internal.Nullable;
 import net.mersid.realtimetranslate.RealTimeTranslate;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
@@ -23,28 +22,19 @@ public enum ChatUtils {
 		MinecraftClient.getInstance().getNetworkHandler().sendPacket(new ChatMessageC2SPacket(message));
 	}
 
-	/**
-	 * Uses regexes in the configuration file to attempt to retrieve the name of the player, given a chat message.
-	 * Returns null if the name cannot be retrieved (does not exist, no appropriate regex, etc)
-	 */
-	public static @Nullable String getChatMessageSender(String message)
-	{
-		for (Pattern pattern : RealTimeTranslate.INSTANCE.configuration.regexes)
-		{
-			Matcher matcher = pattern.matcher(message);
-			if (matcher.find())
-				return matcher.group();
-		}
-		return null;
-	}
-
 	public static boolean isPlayerSentMessage(String message)
 	{
+		int i = 0;
 		for (Pattern pattern : RealTimeTranslate.INSTANCE.configuration.regexes)
 		{
 			Matcher matcher = pattern.matcher(message);
 			if (matcher.find())
+			{
+				System.out.println(i + ": " + pattern.pattern());
+				System.out.println("Group: " + matcher.group());
 				return true;
+			}
+			i++;
 		}
 		return false;
 	}
@@ -61,5 +51,19 @@ public enum ChatUtils {
 			}
 		}
 		return message;
+	}
+
+	public static String stripFormatting(String message)
+	{
+		return message.replaceAll("§.", "");
+	}
+
+	/**
+	 * Returns true if message starts with "Translated" - yes, the open bracket is intentional.
+	 */
+	public static boolean isAlreadyTranslated(String message)
+	{
+		Matcher m = Pattern.compile("§7Translated \\(").matcher(message);
+		return m.find();
 	}
 }

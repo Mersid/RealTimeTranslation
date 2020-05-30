@@ -1,7 +1,6 @@
 package net.mersid.realtimetranslate.translators;
 
 import com.google.gson.JsonObject;
-import com.sun.istack.internal.Nullable;
 import net.mersid.realtimetranslate.RealTimeTranslate;
 import net.mersid.realtimetranslate.translations.SuccessfulYandexTranslation;
 import net.mersid.realtimetranslate.translations.UnsuccessfulYandexTranslation;
@@ -14,11 +13,11 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.Locale;
 import java.util.function.Consumer;
-
 
 public class YandexTranslator {
 	private final HttpClient httpClient;

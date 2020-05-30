@@ -52,7 +52,7 @@ public class GoogleScrapeTranslator {
 
 		SuccessfulGoogleScrapeTranslation successfulTranslation = translation.getSuccessfulTranslation();
 
-		Matcher matcher = Pattern.compile("(?<=<div dir=\"ltr\" class=\"t0\">).*?(?=<\\/div>)").matcher(successfulTranslation.getText()); // Escaped HTML of translation as matcher
+		Matcher matcher = Pattern.compile("(?<=<div dir=\"ltr\" class=\"t0\">).*?(?=</div>)").matcher(successfulTranslation.getText()); // Escaped HTML of translation as matcher
 		matcher.find();
 		successfulTranslation.setText(StringEscapeUtils.unescapeHtml4(matcher.group())); // matcher.group() returns escaped html.
 
