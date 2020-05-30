@@ -7,6 +7,7 @@ import net.minecraft.text.LiteralText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 public enum ChatUtils {
 	;
@@ -25,13 +26,13 @@ public enum ChatUtils {
 	public static boolean isPlayerSentMessage(String message)
 	{
 		int i = 0;
-		for (Pattern pattern : RealTimeTranslate.INSTANCE.configuration.regexes)
+		for (String regex : RealTimeTranslate.INSTANCE.configuration.regexList)
 		{
-			Matcher matcher = pattern.matcher(message);
+			regex = "^" + regex; // Match from beginning of string only
+			Matcher matcher = Pattern.compile(regex).matcher(message);
 			if (matcher.find())
 			{
-				System.out.println(i + ": " + pattern.pattern());
-				System.out.println("Group: " + matcher.group());
+				System.out.println("Match found: " + i + " / " + regex);
 				return true;
 			}
 			i++;
@@ -41,14 +42,17 @@ public enum ChatUtils {
 
 	public static String stripPlayerTag(String message)
 	{
-		for (Pattern pattern : RealTimeTranslate.INSTANCE.configuration.regexes)
+		int i = 0;
+		for (String regex : RealTimeTranslate.INSTANCE.configuration.regexList)
 		{
-			Matcher matcher = pattern.matcher(message);
+			regex = "^" + regex; // Match from beginning of string only
+			Matcher matcher = Pattern.compile(regex).matcher(message);
 			if (matcher.find())
 			{
 				message = matcher.replaceFirst("");
 				break;
 			}
+			i++;
 		}
 		return message;
 	}

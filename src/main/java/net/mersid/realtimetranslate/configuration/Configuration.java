@@ -19,27 +19,24 @@ public class Configuration {
 			"trnsl.1.1.20200510T224923Z.a7495263b82ed147.db1c0e64630961e39417c158005835e9aa980a05",
 			"trnsl.1.1.20200510T225044Z.51bbb94daf22147f.3572d3daecdefaa0b43713b40981d99d2b41d426");
 
-	@Deprecated
-	public transient List<String> invalidYandexApiKeys = Collections.emptyList();
-
-	public List<Pattern> regexes = Arrays.asList(
-			Pattern.compile("<(\\w+)> "),
-			Pattern.compile("\\(From (\\w+)\\):( )?"),
-			Pattern.compile("(\\w+) whispers "),
-			Pattern.compile("(\\[\\S+]( )?){0,2}(\\w+)( )?Â»( )?"),
-			Pattern.compile("(\\[\\S+]( )?){0,2}(\\w+)( )?:( )?(Eye\\[\\d] )?"),
-			Pattern.compile("\\d{1,3} (\\w+ )?(\\w+) "),
-			Pattern.compile("Dead (\\d+ )?(\\w+ )?(\\w+) "),
-			Pattern.compile("(\\w+) > \\w+ "),
-			Pattern.compile("(\\w+) whispers to you: "),
-			Pattern.compile("(\\(Team\\) )?(\\[\\w+] ){1,2}(\\w+): "),
-			Pattern.compile("(\\w+ )?\\w+: (\\w+) > "),
-			Pattern.compile("\\[Lvl \\d+] â–¶ (\\w+: )?(\\w+) > "),
-			Pattern.compile("â–¶ \\[\\d+] (\\w+: )?(\\w+) > "),
-			Pattern.compile("â–¶ (\\w+: )?(\\w+) > "),
-			Pattern.compile("(\\[\\w+])?\\[Level \\d+] \\[(\\w+)] "),
-			Pattern.compile("(\\w+) tells you: "),
-			Pattern.compile("\\[(\\w+) -> \\w+] "),
-			Pattern.compile("(\\w+ )?(\\w+-)?(\\w+)(\\*)?(\\+){0,2}:")
+	public List<String> regexList = Arrays.asList(
+			"<(\\w+)> ",
+			"\\(From (\\w+)\\):( )?",
+			"(\\w+) whispers ",
+			"(\\[\\S+\\]( )?){0,2}(\\w+)( )?Â»( )?",
+			"(\\[\\S+\\]( )?){0,2}(\\w+)( )?:( )?(Eye\\[\\d\\] )?",
+			"\\d{1,3} (\\w+ )?(\\w+) ",
+			"Dead (\\d+ )?(\\w+ )?(\\w+) ",
+			"(\\w+) > \\w+ ",
+			"(\\w+) whispers to you: ",
+			"(\\(Team\\) )?(\\[\\w+\\] ){1,2}(\\w+): ",
+			"(\\w+ )?\\w+: (\\w+) > ",
+			"\\[Lvl \\d+\\] â–¶ (\\w+: )?(\\w+) > ",
+			"â–¶ \\[\\d+\\] (\\w+: )?(\\w+) > ",
+			"â–¶ (\\w+: )?(\\w+) > ",
+			"(\\[\\w+\\])?\\[Level \\d+\\] \\[(\\w+)\\] ",
+			"(\\w+) tells you: ",
+			"\\[(\\w+) -> \\w+\\] ",
+			"(\\w+ )?(\\w+-)?(\\w+)(\\*)?(\\+){0,2}:"
 	);
 }
