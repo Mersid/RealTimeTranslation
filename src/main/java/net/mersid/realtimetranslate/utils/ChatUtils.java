@@ -38,4 +38,14 @@ public enum ChatUtils {
 		return null;
 	}
 
+	public static boolean isPlayerSentMessage(String message)
+	{
+		for (Pattern pattern : RealTimeTranslate.INSTANCE.configuration.regexes)
+		{
+			Matcher matcher = pattern.matcher(message);
+			if (matcher.find())
+				return true;
+		}
+		return false;
+	}
 }

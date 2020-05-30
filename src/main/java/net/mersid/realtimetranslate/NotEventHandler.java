@@ -9,7 +9,7 @@ public class NotEventHandler {
 
 	public void onReceiveChat(Text chatText, int chatLineId)
 	{
-		System.out.println("Chat received (" + ChatUtils.getChatMessageSender(chatText.asFormattedString()) + "): " + chatText.asFormattedString());
+		System.out.println("Chat received (" + ChatUtils.isPlayerSentMessage(chatText.asFormattedString()) + "): " + chatText.asFormattedString());
 	}
 
 	public void onSendChat(String message)
