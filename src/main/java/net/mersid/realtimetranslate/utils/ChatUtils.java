@@ -37,4 +37,5 @@ public enum ChatUtils {
 		}
 		return null;
 	}
+
 }
