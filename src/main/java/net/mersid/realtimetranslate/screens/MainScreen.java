@@ -2,6 +2,7 @@ package net.mersid.realtimetranslate.screens;
 
 import net.mersid.realtimetranslate.RealTimeTranslate;
 import net.mersid.realtimetranslate.utils.ChatUtils;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.Screen;
@@ -10,11 +11,9 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.LiteralText;
 import org.lwjgl.glfw.GLFW;
 
+import java.util.Locale;
+
 public class MainScreen extends Screen {
-
-
-	private ButtonWidget cancelButtonWidget;
-	private ButtonWidget translateButtonWidget;
 
 	private TextFieldWidget translationFieldWidget;
 
@@ -38,7 +37,7 @@ public class MainScreen extends Screen {
 		this.translationFieldWidget.setSelected(true);
 
 		lastKeyboardActivityTime = System.currentTimeMillis();
-
+		System.out.println("Init");
 	}
 
 	@Override
@@ -116,11 +115,14 @@ public class MainScreen extends Screen {
 
 	private void initWidgets()
 	{
-		cancelButtonWidget = new ButtonWidget(width / 2 - 100, height / 2 + 70, 98, 20, "Cancel", this::cancelButtonWidgetPress);
+		ButtonWidget cancelButtonWidget = new ButtonWidget(width / 2 - 100, height / 2 + 70, 98, 20, "Cancel", this::cancelButtonWidgetPress);
 		children.add(cancelButtonWidget);
 
-		translateButtonWidget = new ButtonWidget(width / 2 + 5, height / 2 + 70, 98, 20, "Translate", this::translateButtonWidgetPress);
+		ButtonWidget translateButtonWidget = new ButtonWidget(width / 2 + 5, height / 2 + 70, 98, 20, "Translate", this::translateButtonWidgetPress);
 		children.add(translateButtonWidget);
+
+		ButtonWidget configurationHubButtonWidget = new ButtonWidget(width / 2 - 100, height / 2 + 94, 98, 20, "Configuration", this::configurationHubButtonWidgetPress);
+		children.add(configurationHubButtonWidget);
 
 		translationFieldWidget = new TextFieldWidget(font, width / 2 - 99, height / 2 + 30, 200, 15, "Hi!");
 		translationFieldWidget.setMaxLength(1024);
@@ -137,6 +139,11 @@ public class MainScreen extends Screen {
 	{
 		sendTranslation(translationFieldWidget.getText());
 		close();
+	}
+
+	private void configurationHubButtonWidgetPress(ButtonWidget widget)
+	{
+		MinecraftClient.getInstance().openScreen(new ConfigurationHubScreen(this));
 	}
 
 	private void sendTranslation(String message)
