@@ -14,10 +14,11 @@ public class NotEventHandler {
 		if (!ChatUtils.isAlreadyTranslated(chatText.getString()) && ChatUtils.isPlayerSentMessage(strippedText))
 		{
 			RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(ChatUtils.stripPlayerTag(strippedText), translation -> {
-				if (translation.wasSuccessful() && translation.getSuccessfulTranslation().getSourceLang() != translation.getSuccessfulTranslation().getDestinationLang())
+				if (translation.wasSuccessful())
 				{
 					SuccessfulYandexTranslation successfulTranslation = translation.getSuccessfulTranslation();
-					ChatUtils.putChatMessage("§7Translated (" + successfulTranslation.getSourceLang().getDisplayLanguage() + "): " + successfulTranslation.getText());
+					if (!successfulTranslation.getSourceLang().equals(successfulTranslation.getDestinationLang()))
+						ChatUtils.putChatMessage("§7Translated (" + successfulTranslation.getSourceLang().getDisplayLanguage() + "): " + successfulTranslation.getText());
 				}
 				else
 				{

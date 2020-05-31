@@ -35,7 +35,7 @@ public enum ConfigurationUtils {
 			saveConfiguration(configuration, path);
 
 			return configuration;
-		} catch (IOException | JsonSyntaxException ioException)
+		} catch (IOException | JsonSyntaxException e)
 		{
 			System.out.println("Error loading configuration file from " + path.toString() + ". A new one will be created.");
 			Configuration newConfiguration = new Configuration();
