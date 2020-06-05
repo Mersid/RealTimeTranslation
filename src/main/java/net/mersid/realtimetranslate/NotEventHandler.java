@@ -8,7 +8,7 @@ import net.minecraft.text.Text;
 
 public class NotEventHandler {
 
-	public void onReceiveChat(Text chatText, int chatLineId)
+	public void onReceiveChat(Text chatText)
 	{
 		String strippedText = ChatUtils.stripFormatting(chatText.getString());
 		if (!ChatUtils.isAlreadyTranslated(chatText.getString()) && ChatUtils.isPlayerSentMessage(strippedText))

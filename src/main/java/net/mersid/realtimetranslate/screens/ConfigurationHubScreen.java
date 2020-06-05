@@ -1,5 +1,6 @@
 package net.mersid.realtimetranslate.screens;
 
+import net.mersid.realtimetranslate.widgets.LanguageEntry;
 import net.mersid.realtimetranslate.widgets.LanguageSelectionListWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
@@ -29,8 +30,6 @@ public class ConfigurationHubScreen extends Screen {
 			if (child instanceof Drawable)
 				((Drawable)child).render(mouseX, mouseY, delta);
 		}
-
-		//drawCenteredString(font, String.valueOf(width), width / 2, height / 4, 0xFFFFFFFF);
 	}
 
 	@Override

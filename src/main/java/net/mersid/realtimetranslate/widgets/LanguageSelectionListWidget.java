@@ -1,10 +1,9 @@
 package net.mersid.realtimetranslate.widgets;
 
+import net.mersid.realtimetranslate.RealTimeTranslate;
+import net.mersid.realtimetranslate.language.Language;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.options.LanguageOptionsScreen;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
-import net.minecraft.client.util.NarratorManager;
-import net.minecraft.text.TranslatableText;
 
 public class LanguageSelectionListWidget extends AlwaysSelectedEntryListWidget<LanguageEntry> {
 
@@ -13,7 +12,10 @@ public class LanguageSelectionListWidget extends AlwaysSelectedEntryListWidget<L
 	{
 		super(client, width, height, top, bottom, itemHeight);
 
-		addEntry(new LanguageEntry(this));
+		for (Language language : RealTimeTranslate.INSTANCE.languageManager.languages)
+		{
+			addEntry(new LanguageEntry(this, language));
+		}
 	}
 
 	@Override

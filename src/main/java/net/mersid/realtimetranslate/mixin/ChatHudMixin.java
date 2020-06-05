@@ -13,10 +13,10 @@ public class ChatHudMixin {
 
 	// Fired when a chat message is received
 	@Inject(at = @At("HEAD"),
-			method = "addMessage(Lnet/minecraft/text/Text;I)V"
+			method = "addMessage(Lnet/minecraft/text/Text;)V"
 	)
-	private void onAddMessage(Text chatText, int chatLineId, CallbackInfo ci)
+	private void onAddMessage(Text chatText, CallbackInfo ci)
 	{
-		RealTimeTranslate.INSTANCE.notEventHandler.onReceiveChat(chatText, chatLineId);
+		RealTimeTranslate.INSTANCE.notEventHandler.onReceiveChat(chatText);
 	}
 }
