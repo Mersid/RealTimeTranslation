@@ -37,7 +37,6 @@ public class MainScreen extends Screen {
 		this.translationFieldWidget.setSelected(true);
 
 		lastKeyboardActivityTime = System.currentTimeMillis();
-		System.out.println("Init");
 	}
 
 	@Override
@@ -57,7 +56,6 @@ public class MainScreen extends Screen {
 		drawCenteredString(font, title.asString(), width / 2, height / 4, 0xFFFFFFFF);
 		drawCenteredString(font, previewText, width / 2, height / 2 + 10, TEXT_GREY_COLOR_CODE);
 		drawCenteredString(font, RealTimeTranslate.INSTANCE.yandexKeyManager.getKey(), width / 2, height / 4 + font.fontHeight + 4, TEXT_GREY_COLOR_CODE);
-
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package net.mersid.realtimetranslate.screens;
 
+import net.mersid.realtimetranslate.widgets.LanguageSelectionListWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
@@ -9,6 +10,7 @@ import net.minecraft.text.LiteralText;
 public class ConfigurationHubScreen extends Screen {
 
 	private final Screen parent;
+	private LanguageSelectionListWidget languageSelectionListWidget;
 
 	public ConfigurationHubScreen(Screen parent)
 	{
@@ -28,7 +30,7 @@ public class ConfigurationHubScreen extends Screen {
 				((Drawable)child).render(mouseX, mouseY, delta);
 		}
 
-		drawCenteredString(font, title.asString(), width / 2, height / 4, 0xFFFFFFFF);
+		//drawCenteredString(font, String.valueOf(width), width / 2, height / 4, 0xFFFFFFFF);
 	}
 
 	@Override
@@ -41,9 +43,11 @@ public class ConfigurationHubScreen extends Screen {
 	}
 
 	@Override
-	public void init(MinecraftClient client, int width, int height)
+	public void init()
 	{
-		super.init(client, width, height);
+		this.languageSelectionListWidget = new LanguageSelectionListWidget(MinecraftClient.getInstance(), width, height, 32, height - 61, 18);
+		children.add(languageSelectionListWidget);
 	}
+
 
 }
