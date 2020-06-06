@@ -12,6 +12,7 @@ public class LanguageSelectionListWidget extends AlwaysSelectedEntryListWidget<L
 	{
 		super(client, width, height, top, bottom, itemHeight);
 
+		addEntry(new LanguageEntry(this, Language.AUTO));
 		for (Language language : RealTimeTranslate.INSTANCE.languageManager.languages)
 		{
 			addEntry(new LanguageEntry(this, language));
