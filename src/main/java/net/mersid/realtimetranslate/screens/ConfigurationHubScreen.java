@@ -20,6 +20,13 @@ public class ConfigurationHubScreen extends Screen {
 	}
 
 	@Override
+	public void init()
+	{
+		this.languageSelectionListWidget = new LanguageSelectionListWidget(MinecraftClient.getInstance(), width, height, 32, height - 61, 18);
+		children.add(languageSelectionListWidget);
+	}
+
+	@Override
 	public void render(int mouseX, int mouseY, float delta)
 	{
 		fill(0, 0, this.width, this.height, 0x7F000000); // ARGB
@@ -40,13 +47,5 @@ public class ConfigurationHubScreen extends Screen {
 
 		minecraft.openScreen(parent);
 	}
-
-	@Override
-	public void init()
-	{
-		this.languageSelectionListWidget = new LanguageSelectionListWidget(MinecraftClient.getInstance(), width, height, 32, height - 61, 18);
-		children.add(languageSelectionListWidget);
-	}
-
 
 }
