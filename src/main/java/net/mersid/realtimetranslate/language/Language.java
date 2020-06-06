@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName;
 import org.jetbrains.annotations.Nullable;
 
 public class Language {
-	public static final Language AUTO = new Language();
+	public static final transient Language AUTO = new Language();
 
 	private final String name;
-	private @Nullable @SerializedName("nameUnicode") final String unicodeName;
-	private @Nullable final String googleCode;
-	private @Nullable final String yandexCode;
+	private @Nullable @SerializedName("nameUnicode") final transient String unicodeName;
+	private @Nullable final transient String googleCode;
+	private @Nullable final transient String yandexCode;
 
 	// Used only for creating the auto language definition - all others should be created using the lang.json file provided.
 	private Language()
