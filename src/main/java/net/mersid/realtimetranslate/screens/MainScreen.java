@@ -11,8 +11,6 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.LiteralText;
 import org.lwjgl.glfw.GLFW;
 
-import java.util.Locale;
-
 public class MainScreen extends Screen {
 
 	private TextFieldWidget translationFieldWidget;

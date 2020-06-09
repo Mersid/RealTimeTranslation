@@ -1,6 +1,5 @@
 package net.mersid.realtimetranslate.configuration;
 
-import net.mersid.realtimetranslate.language.Language;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;

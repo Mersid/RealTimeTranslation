@@ -1,15 +1,12 @@
 package net.mersid.realtimetranslate.language;
 
 import net.mersid.realtimetranslate.utils.JsonUtils;
-import net.mersid.realtimetranslate.widgets.LanguageEntry;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class LanguageManager {

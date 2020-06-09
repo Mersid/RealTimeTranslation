@@ -1,6 +1,5 @@
 package net.mersid.realtimetranslate.screens;
 
-import net.mersid.realtimetranslate.widgets.LanguageEntry;
 import net.mersid.realtimetranslate.widgets.LanguageSelectionListWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
