@@ -1,5 +1,8 @@
 package net.mersid.realtimetranslate;
 
+import net.mersid.realtimetranslate.configuration.Configuration;
+import net.mersid.realtimetranslate.language.Language;
+import net.mersid.realtimetranslate.language.LanguageManager;
 import net.mersid.realtimetranslate.screens.MainScreen;
 import net.mersid.realtimetranslate.translations.SuccessfulYandexTranslation;
 import net.mersid.realtimetranslate.utils.ChatUtils;
@@ -13,12 +16,17 @@ public class NotEventHandler {
 		String strippedText = ChatUtils.stripFormatting(chatText.getString());
 		if (!ChatUtils.isAlreadyTranslated(chatText.getString()) && ChatUtils.isPlayerSentMessage(strippedText))
 		{
-			RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(ChatUtils.stripPlayerTag(strippedText), translation -> {
+			Configuration cfg = RealTimeTranslate.INSTANCE.configuration;
+			LanguageManager languageManager = RealTimeTranslate.INSTANCE.languageManager;
+			Language src = languageManager.getLanguageByName(cfg.outgoingSourceLanguage);
+			Language dest = languageManager.getLanguageByName(cfg.outgoingDestinationLanguage);
+
+			RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(ChatUtils.stripPlayerTag(strippedText), src, dest, translation -> {
 				if (translation.wasSuccessful())
 				{
 					SuccessfulYandexTranslation successfulTranslation = translation.getSuccessfulTranslation();
 					if (!successfulTranslation.getSourceLang().equals(successfulTranslation.getDestinationLang()))
-						ChatUtils.putChatMessage("§7Translated (" + successfulTranslation.getSourceLang().getDisplayLanguage() + "): " + successfulTranslation.getText());
+						ChatUtils.putChatMessage("§7Translated (" + successfulTranslation.getSourceLang().getName() + "): " + successfulTranslation.getText());
 				}
 				else
 				{

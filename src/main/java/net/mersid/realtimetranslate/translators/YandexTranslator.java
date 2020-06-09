@@ -2,6 +2,7 @@ package net.mersid.realtimetranslate.translators;
 
 import com.google.gson.JsonObject;
 import net.mersid.realtimetranslate.RealTimeTranslate;
+import net.mersid.realtimetranslate.language.Language;
 import net.mersid.realtimetranslate.translations.SuccessfulYandexTranslation;
 import net.mersid.realtimetranslate.translations.UnsuccessfulYandexTranslation;
 import net.mersid.realtimetranslate.translations.YandexTranslation;
@@ -13,10 +14,8 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.function.Consumer;
 
 public class YandexTranslator {
@@ -37,7 +36,7 @@ public class YandexTranslator {
 	 * @param translate The text to translate
 	 * @return An {@link SuccessfulYandexTranslation} if the translation is successful, or an {@link UnsuccessfulYandexTranslation} if it is not.
 	 */
-	public YandexTranslation getTranslation(String apiKey, @Nullable /* Null for auto detect. */ Locale sourceLang, Locale destLang, String translate)
+	public YandexTranslation getTranslation(String apiKey, Language sourceLang, Language destLang, String translate)
 	{
 		try
 		{
@@ -68,25 +67,32 @@ public class YandexTranslator {
 	 * Named terribly... but feed it a string to translate, and a lambda function
 	 * to make it the translator perform an action as defined by the function.
 	 *
-	 * Also, in the callback, it's best to call a key rotate if something goes wrong.
-	 **/
-	public void translateWithFunctionAsync(String translateText, Consumer<YandexTranslation> callback)
+	 * The translation key is automatically pulled from {@link RealTimeTranslate#yandexKeyManager}
+	 * However, the languages must be supplied manually.
+	 *
+	 * @param translateText The text to translate
+	 * @param source The language to translate from. Use {@link Language#AUTO} for automatic detection
+	 * @param dest The language to translate to
+	 * @param callback The method to run when the translation is finished. A {@link YandexTranslation}
+	 *                 object is provided to obtain relevant values.
+	 */
+	public void translateWithFunctionAsync(String translateText, Language source, Language dest, Consumer<YandexTranslation> callback)
 	{
 		RealTimeTranslate.INSTANCE.threadPool.execute(() -> {
 			YandexTranslation translation = RealTimeTranslate.INSTANCE.yandexTranslator.getTranslation(
 					RealTimeTranslate.INSTANCE.yandexKeyManager.getKey(),
-					RealTimeTranslate.INSTANCE.configuration.sourceLanguage,
-					RealTimeTranslate.INSTANCE.configuration.destinationLanguage,
+					source,
+					dest,
 					translateText);
 
 			callback.accept(translation);
 		});
 	}
 
-	private String getLangPair(Locale source, Locale dest)
+	private String getLangPair(Language source, Language dest)
 	{
-		if (source == null)
-			return dest.getLanguage();
-		return source.getLanguage() + "-" + dest.getLanguage();
+		if (source == null || source.getName().equals("Auto"))
+			return dest.getYandexCode();
+		return source.getYandexCode() + "-" + dest.getYandexCode();
 	}
 }

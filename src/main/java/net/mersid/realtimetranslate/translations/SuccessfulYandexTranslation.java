@@ -1,6 +1,8 @@
 package net.mersid.realtimetranslate.translations;
 
-import java.util.Locale;
+import net.mersid.realtimetranslate.RealTimeTranslate;
+import net.mersid.realtimetranslate.language.Language;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,24 +22,24 @@ public class SuccessfulYandexTranslation extends YandexTranslation {
 		return text[0];
 	}
 
-	public Locale getSourceLang()
+	public Language getSourceLang()
 	{
 		Matcher matcher = Pattern.compile("^.*(?=-)").matcher(lang);
 		matcher.find();
-		return new Locale(matcher.group());
+		return RealTimeTranslate.INSTANCE.languageManager.getLanguageByYandexCode(matcher.group());
 
 	}
 
-	public Locale getDestinationLang()
+	public Language getDestinationLang()
 	{
 		Matcher matcher = Pattern.compile("(?<=-).*$").matcher(lang);
 		matcher.find();
-		return new Locale(matcher.group());
+		return RealTimeTranslate.INSTANCE.languageManager.getLanguageByYandexCode(matcher.group());
 	}
 
 	@Override
 	public String toString()
 	{
-		return lang + " (" + getSourceLang().getDisplayLanguage() + " to " + getDestinationLang().getDisplayLanguage() + "): " + getText();
+		return lang + " (" + getSourceLang().getName() + " to " + getDestinationLang().getName() + "): " + getText();
 	}
 }

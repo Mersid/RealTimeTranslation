@@ -35,7 +35,22 @@ public class LanguageManager {
 		{
 			if (language.getName().equals(name))
 			{
-				return  language;
+				return language;
+			}
+		}
+		return null;
+	}
+
+	public Language getLanguageByYandexCode(String code)
+	{
+		for (Language language : languages)
+		{
+			if (language.getYandexCode() == null)
+				continue;
+
+			if (language.getYandexCode().equals(code))
+			{
+				return language;
 			}
 		}
 		return null;

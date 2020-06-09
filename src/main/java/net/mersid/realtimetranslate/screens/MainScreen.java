@@ -1,6 +1,9 @@
 package net.mersid.realtimetranslate.screens;
 
 import net.mersid.realtimetranslate.RealTimeTranslate;
+import net.mersid.realtimetranslate.configuration.Configuration;
+import net.mersid.realtimetranslate.language.Language;
+import net.mersid.realtimetranslate.language.LanguageManager;
 import net.mersid.realtimetranslate.utils.ChatUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
@@ -67,7 +70,12 @@ public class MainScreen extends Screen {
 		{
 			if (translateText.length() > 0)
 			{
-				RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(translateText, translation -> {
+				Configuration cfg = RealTimeTranslate.INSTANCE.configuration;
+				LanguageManager languageManager = RealTimeTranslate.INSTANCE.languageManager;
+				Language src = languageManager.getLanguageByName(cfg.outgoingSourceLanguage);
+				Language dest = languageManager.getLanguageByName(cfg.outgoingDestinationLanguage);
+
+				RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(translateText, src, dest, translation -> {
 					if (translation.wasSuccessful())
 					{
 						previewText = translation.getSuccessfulTranslation().getText();
@@ -147,7 +155,12 @@ public class MainScreen extends Screen {
 		if (message.length() == 0)
 			return;
 
-		RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(message, translation -> {
+		Configuration cfg = RealTimeTranslate.INSTANCE.configuration;
+		LanguageManager languageManager = RealTimeTranslate.INSTANCE.languageManager;
+		Language src = languageManager.getLanguageByName(cfg.outgoingSourceLanguage);
+		Language dest = languageManager.getLanguageByName(cfg.outgoingDestinationLanguage);
+
+		RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(message, src, dest, translation -> {
 			if (translation.wasSuccessful())
 				ChatUtils.sendChatMessagePacket(translation.getSuccessfulTranslation().getText());
 			else

@@ -1,19 +1,13 @@
 package net.mersid.realtimetranslate.configuration;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class Configuration {
-	public @Deprecated @Nullable Locale sourceLanguage = null;
-	public @Deprecated Locale destinationLanguage = Locale.ENGLISH;
-
-	public @Nullable String incomingSourceLanguage = null;
+	public String incomingSourceLanguage = "Auto";
 	public String incomingDestinationLanguage = "English";
 
-	public @Nullable String outgoingSourceLanguage = null;
+	public String outgoingSourceLanguage = "Auto";
 	public String outgoingDestinationLanguage = "Spanish";
 
 	public int previewUpdateMillis = 250;
