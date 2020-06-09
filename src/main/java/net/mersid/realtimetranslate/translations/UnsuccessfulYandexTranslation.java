@@ -2,7 +2,7 @@ package net.mersid.realtimetranslate.translations;
 
 public class UnsuccessfulYandexTranslation extends YandexTranslation {
 
-	private String message;
+	private final String message;
 
 	public UnsuccessfulYandexTranslation(int errorCode, String message)
 	{

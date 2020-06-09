@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class SuccessfulYandexTranslation extends YandexTranslation {
 
-	private String lang;
+	private final String lang;
 	private String[] text; // Translation result. Only field 0 should be populated.
 
 	public SuccessfulYandexTranslation(int errorCode, String lang, String text)
