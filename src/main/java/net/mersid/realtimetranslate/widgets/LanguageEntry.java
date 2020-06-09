@@ -1,5 +1,6 @@
 package net.mersid.realtimetranslate.widgets;
 
+import net.mersid.realtimetranslate.RealTimeTranslate;
 import net.mersid.realtimetranslate.language.Language;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
@@ -46,5 +47,6 @@ public class LanguageEntry extends AlwaysSelectedEntryListWidget.Entry<LanguageE
 	private void onPressed()
 	{
 		languageSelectionListWidget.setSelected(this);
+		System.out.println(RealTimeTranslate.INSTANCE.languageManager.getLanguageByName(language.getName()));
 	}
 }

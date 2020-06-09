@@ -29,6 +29,14 @@ public class YandexTranslator {
 		endpoint = "https://translate.yandex.net/api/v1.5/tr.json/translate";
 	}
 
+	/**
+	 * Gets the appropriate translation. This method makes a REST API call, and may take some time.
+	 * @param apiKey Yandex API key
+	 * @param sourceLang The source {@link net.mersid.realtimetranslate.language.Language} to translate from, or null for auto
+	 * @param destLang The destination {@link net.mersid.realtimetranslate.language.Language} to translate to
+	 * @param translate The text to translate
+	 * @return An {@link SuccessfulYandexTranslation} if the translation is successful, or an {@link UnsuccessfulYandexTranslation} if it is not.
+	 */
 	public YandexTranslation getTranslation(String apiKey, @Nullable /* Null for auto detect. */ Locale sourceLang, Locale destLang, String translate)
 	{
 		try
