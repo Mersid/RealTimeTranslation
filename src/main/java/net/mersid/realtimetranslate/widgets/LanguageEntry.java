@@ -47,6 +47,5 @@ public class LanguageEntry extends AlwaysSelectedEntryListWidget.Entry<LanguageE
 	private void onPressed()
 	{
 		languageSelectionListWidget.setSelected(this);
-		System.out.println(RealTimeTranslate.INSTANCE.languageManager.getLanguageByName(language.getName()));
 	}
 }

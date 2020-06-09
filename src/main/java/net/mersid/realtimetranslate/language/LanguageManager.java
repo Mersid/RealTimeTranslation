@@ -28,11 +28,11 @@ public class LanguageManager {
 	}
 
 	/**
-	 *
+	 * Returns a {@link Language} by its name.
 	 * @param name Full name of the language to return
-	 * @return {@link Language} if the language exists, or null if it doesn't.
+	 * @return {@link Language} if the language exists, or null if it doesn't. It shouldn't, unless something's gone way south
 	 */
-	public @Nullable Language getLanguageByName(String name)
+	public Language getLanguageByName(String name)
 	{
 		for (Language language : languages)
 		{

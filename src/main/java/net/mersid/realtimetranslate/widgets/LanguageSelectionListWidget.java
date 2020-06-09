@@ -11,7 +11,7 @@ public class LanguageSelectionListWidget extends AlwaysSelectedEntryListWidget<L
 	public LanguageSelectionListWidget(MinecraftClient client, int width, int height, int top, int bottom, int itemHeight)
 	{
 		super(client, width, height, top, bottom, itemHeight);
-		
+
 		for (Language language : RealTimeTranslate.INSTANCE.languageManager.languages)
 		{
 			addEntry(new LanguageEntry(this, language));
