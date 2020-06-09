@@ -8,7 +8,7 @@ public class Configuration {
 	public String incomingDestinationLanguage = "English";
 
 	public String outgoingSourceLanguage = "Auto";
-	public String outgoingDestinationLanguage = "Spanish";
+	public String outgoingDestinationLanguage = "French";
 
 	public int previewUpdateMillis = 250;
 

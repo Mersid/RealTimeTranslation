@@ -18,8 +18,8 @@ public class NotEventHandler {
 		{
 			Configuration cfg = RealTimeTranslate.INSTANCE.configuration;
 			LanguageManager languageManager = RealTimeTranslate.INSTANCE.languageManager;
-			Language src = languageManager.getLanguageByName(cfg.outgoingSourceLanguage);
-			Language dest = languageManager.getLanguageByName(cfg.outgoingDestinationLanguage);
+			Language src = languageManager.getLanguageByName(cfg.incomingSourceLanguage);
+			Language dest = languageManager.getLanguageByName(cfg.incomingDestinationLanguage);
 
 			RealTimeTranslate.INSTANCE.yandexTranslator.translateWithFunctionAsync(ChatUtils.stripPlayerTag(strippedText), src, dest, translation -> {
 				if (translation.wasSuccessful())
