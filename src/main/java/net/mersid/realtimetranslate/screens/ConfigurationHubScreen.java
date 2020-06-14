@@ -5,13 +5,12 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.LiteralText;
 
 public class ConfigurationHubScreen extends Screen {
 
 	private final Screen parent;
-	private LanguageSelectionListWidget languageSelectionListWidget;
-
 	public ConfigurationHubScreen(Screen parent)
 	{
 		super(new LiteralText("Configuration Hub"));
@@ -21,8 +20,33 @@ public class ConfigurationHubScreen extends Screen {
 	@Override
 	public void init()
 	{
-		this.languageSelectionListWidget = new LanguageSelectionListWidget(MinecraftClient.getInstance(), width, height, 32, height - 61, 18);
-		children.add(languageSelectionListWidget);
+		ButtonWidget incomingSourceLanguageScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 - 46, 225, 20,
+				"Change Incoming Source Language", button -> MinecraftClient.getInstance().openScreen(new IncomingSourceLanguageSelectionScreen(this)));
+		children.add(incomingSourceLanguageScreenButtonWidget);
+
+		ButtonWidget incomingDestinationLanguageScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 - 46, 225, 20,
+				"Change Incoming Destination Language", button -> System.out.println("B"));
+		children.add(incomingDestinationLanguageScreenButtonWidget);
+
+		ButtonWidget outgoingSourceLanguageScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 - 22, 225, 20,
+				"Change Outgoing Source Language", button -> System.out.println("C"));
+		children.add(outgoingSourceLanguageScreenButtonWidget);
+
+		ButtonWidget outgoingDestinationLanguageScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 - 22, 225, 20,
+				"Change Outgoing Destination Language", button -> System.out.println("D"));
+		children.add(outgoingDestinationLanguageScreenButtonWidget);
+
+		ButtonWidget yandexApiKeyManagerScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 + 2, 225, 20,
+				"Manage Yandex API Keys", button -> System.out.println("E"));
+		children.add(yandexApiKeyManagerScreenButtonWidget);
+
+		ButtonWidget regexManagerScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 + 2, 225, 20,
+				"Manage Regular Expressions", button -> System.out.println("F"));
+		children.add(regexManagerScreenButtonWidget);
+
+		ButtonWidget backButtonWidget = new ButtonWidget(width / 2 - 112, height / 2 + 26, 225, 20,
+				"Back", button -> onClose());
+		children.add(backButtonWidget);
 	}
 
 	@Override
@@ -36,6 +60,8 @@ public class ConfigurationHubScreen extends Screen {
 			if (child instanceof Drawable)
 				((Drawable)child).render(mouseX, mouseY, delta);
 		}
+
+		drawCenteredString(font, title.asString(), width / 2, height / 4, 0xFFFFFFFF);
 	}
 
 	@Override

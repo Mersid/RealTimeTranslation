@@ -26,7 +26,11 @@ public class LanguageEntry extends AlwaysSelectedEntryListWidget.Entry<LanguageE
 		MinecraftClient mc = MinecraftClient.getInstance();
 		assert mc.currentScreen != null; // Because if the current screen is null, how can the language selector and entries exist?
 
-		languageSelectionListWidget.drawCenteredString(mc.textRenderer, language.getName() + " (" + language.getYandexCode() + " : " + language.getGoogleCode() + ")", mc.currentScreen.width / 2, y + 1, 0xFFFFFF);
+		String name = language.getName();
+		if (language.getUnicodeName() != null)
+			name = name + " (" + language.getUnicodeName() + ")";
+
+		languageSelectionListWidget.drawCenteredString(mc.textRenderer, name, mc.currentScreen.width / 2, y + 1, 0xFFFFFF);
 	}
 
 	@Override

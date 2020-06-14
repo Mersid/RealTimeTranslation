@@ -39,4 +39,15 @@ public class Language {
 	{
 		return yandexCode;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Language{" +
+				"name='" + name + '\'' +
+				", unicodeName='" + unicodeName + '\'' +
+				", googleCode='" + googleCode + '\'' +
+				", yandexCode='" + yandexCode + '\'' +
+				'}';
+	}
 }
