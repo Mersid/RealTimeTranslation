@@ -25,15 +25,15 @@ public class ConfigurationHubScreen extends Screen {
 		children.add(incomingSourceLanguageScreenButtonWidget);
 
 		ButtonWidget incomingDestinationLanguageScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 - 46, 225, 20,
-				"Change Incoming Destination Language", button -> System.out.println("B"));
+				"Change Incoming Destination Language", button -> MinecraftClient.getInstance().openScreen(new IncomingDestinationLanguageSelectionScreen(this)));
 		children.add(incomingDestinationLanguageScreenButtonWidget);
 
 		ButtonWidget outgoingSourceLanguageScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 - 22, 225, 20,
-				"Change Outgoing Source Language", button -> System.out.println("C"));
+				"Change Outgoing Source Language", button -> MinecraftClient.getInstance().openScreen(new OutgoingSourceLanguageSelectionScreen(this)));
 		children.add(outgoingSourceLanguageScreenButtonWidget);
 
 		ButtonWidget outgoingDestinationLanguageScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 - 22, 225, 20,
-				"Change Outgoing Destination Language", button -> System.out.println("D"));
+				"Change Outgoing Destination Language", button -> MinecraftClient.getInstance().openScreen(new OutgoingDestinationLanguageSelectionScreen(this)));
 		children.add(outgoingDestinationLanguageScreenButtonWidget);
 
 		ButtonWidget yandexApiKeyManagerScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 + 2, 225, 20,

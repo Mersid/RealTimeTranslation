@@ -11,6 +11,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,6 +19,7 @@ import java.util.concurrent.Executors;
 public enum RealTimeTranslate {
 	INSTANCE;
 
+	public Path configPath; // Must be hardcoded for obvious reasons.
 	public Configuration configuration;
 	public NotEventHandler notEventHandler;
 	public YandexTranslator yandexTranslator;
@@ -30,7 +32,9 @@ public enum RealTimeTranslate {
 
 	public void initialize()
 	{
-		configuration = ConfigurationUtils.loadConfiguration(Paths.get("realtimetranslate.json"));
+		configPath = Paths.get("realtimetranslate.json");
+
+		configuration = ConfigurationUtils.loadConfiguration(configPath);
 		notEventHandler = new NotEventHandler();
 
 		yandexTranslator = new YandexTranslator();

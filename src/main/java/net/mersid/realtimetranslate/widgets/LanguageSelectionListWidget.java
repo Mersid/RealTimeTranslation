@@ -43,6 +43,6 @@ public class LanguageSelectionListWidget extends AlwaysSelectedEntryListWidget<L
 	public void setSelected(LanguageEntry languageEntry)
 	{
 		super.setSelected(languageEntry);
-		//callback.accept(languageEntry);
+		callback.accept(languageEntry);
 	}
 }

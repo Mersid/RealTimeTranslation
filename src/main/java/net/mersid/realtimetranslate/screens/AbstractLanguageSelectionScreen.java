@@ -1,5 +1,7 @@
 package net.mersid.realtimetranslate.screens;
 
+import net.mersid.realtimetranslate.RealTimeTranslate;
+import net.mersid.realtimetranslate.utils.ConfigurationUtils;
 import net.mersid.realtimetranslate.widgets.LanguageEntry;
 import net.mersid.realtimetranslate.widgets.LanguageSelectionListWidget;
 import net.minecraft.client.MinecraftClient;
@@ -9,6 +11,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 
@@ -62,7 +65,22 @@ public abstract class AbstractLanguageSelectionScreen extends Screen {
 		if (minecraft == null)
 			return;
 
+		ConfigurationUtils.saveConfiguration(RealTimeTranslate.INSTANCE.configuration, RealTimeTranslate.INSTANCE.configPath);
 		minecraft.openScreen(parent);
 	}
 
+	public List<LanguageEntry> getLanguageEntries()
+	{
+		return languageSelectionListWidget.children();
+	}
+
+	public LanguageEntry getLanguageEntryByName(String name)
+	{
+		for (LanguageEntry languageEntry : getLanguageEntries())
+		{
+			if (languageEntry.language.getName().equals(name))
+				return  languageEntry;
+		}
+		return null;
+	}
 }
