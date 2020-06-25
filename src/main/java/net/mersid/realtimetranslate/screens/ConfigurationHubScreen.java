@@ -21,19 +21,19 @@ public class ConfigurationHubScreen extends Screen {
 	public void init()
 	{
 		ButtonWidget incomingSourceLanguageScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 - 46, 225, 20,
-				"Change Incoming Source Language", button -> MinecraftClient.getInstance().openScreen(new IncomingSourceLanguageSelectionScreen(this)));
+				"Change Incoming Source Language", button -> openScreen(new IncomingSourceLanguageSelectionScreen(this)));
 		children.add(incomingSourceLanguageScreenButtonWidget);
 
 		ButtonWidget incomingDestinationLanguageScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 - 46, 225, 20,
-				"Change Incoming Destination Language", button -> MinecraftClient.getInstance().openScreen(new IncomingDestinationLanguageSelectionScreen(this)));
+				"Change Incoming Destination Language", button -> openScreen(new IncomingDestinationLanguageSelectionScreen(this)));
 		children.add(incomingDestinationLanguageScreenButtonWidget);
 
 		ButtonWidget outgoingSourceLanguageScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 - 22, 225, 20,
-				"Change Outgoing Source Language", button -> MinecraftClient.getInstance().openScreen(new OutgoingSourceLanguageSelectionScreen(this)));
+				"Change Outgoing Source Language", button -> openScreen(new OutgoingSourceLanguageSelectionScreen(this)));
 		children.add(outgoingSourceLanguageScreenButtonWidget);
 
 		ButtonWidget outgoingDestinationLanguageScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 - 22, 225, 20,
-				"Change Outgoing Destination Language", button -> MinecraftClient.getInstance().openScreen(new OutgoingDestinationLanguageSelectionScreen(this)));
+				"Change Outgoing Destination Language", button -> openScreen(new OutgoingDestinationLanguageSelectionScreen(this)));
 		children.add(outgoingDestinationLanguageScreenButtonWidget);
 
 		ButtonWidget yandexApiKeyManagerScreenButtonWidget = new ButtonWidget(width / 2 - 235, height / 2 + 2, 225, 20,
@@ -41,7 +41,7 @@ public class ConfigurationHubScreen extends Screen {
 		children.add(yandexApiKeyManagerScreenButtonWidget);
 
 		ButtonWidget regexManagerScreenButtonWidget = new ButtonWidget(width / 2 + 10, height / 2 + 2, 225, 20,
-				"Manage Regular Expressions", button -> System.out.println("F"));
+				"Manage Regular Expressions", button -> openScreen(new RegexScreen(this)));
 		children.add(regexManagerScreenButtonWidget);
 
 		ButtonWidget backButtonWidget = new ButtonWidget(width / 2 - 112, height / 2 + 26, 225, 20,
@@ -71,6 +71,11 @@ public class ConfigurationHubScreen extends Screen {
 			return;
 
 		minecraft.openScreen(parent);
+	}
+
+	private void openScreen(Screen screen)
+	{
+		MinecraftClient.getInstance().openScreen(screen);
 	}
 
 }

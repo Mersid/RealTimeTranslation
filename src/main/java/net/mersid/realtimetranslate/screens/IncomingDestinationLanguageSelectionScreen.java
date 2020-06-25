@@ -20,5 +20,6 @@ public class IncomingDestinationLanguageSelectionScreen extends AbstractLanguage
 	{
 		super.init();
 		hint = "Incoming destination language is the language to translate incoming messages to";
+		languageSelectionListWidget.setSelected(getLanguageEntryByName(RealTimeTranslate.INSTANCE.configuration.incomingDestinationLanguage));
 	}
 }

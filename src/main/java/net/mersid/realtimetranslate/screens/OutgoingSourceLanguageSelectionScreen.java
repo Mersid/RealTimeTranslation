@@ -20,5 +20,6 @@ public class OutgoingSourceLanguageSelectionScreen extends AbstractLanguageSelec
 	{
 		super.init();
 		hint = "Outgoing source language is the language to translate your text from";
+		languageSelectionListWidget.setSelected(getLanguageEntryByName(RealTimeTranslate.INSTANCE.configuration.outgoingSourceLanguage));
 	}
 }

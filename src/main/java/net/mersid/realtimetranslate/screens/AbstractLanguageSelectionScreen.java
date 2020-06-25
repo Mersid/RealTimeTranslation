@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 
 public abstract class AbstractLanguageSelectionScreen extends Screen {
 
-	private final Screen parent;
+	protected final Screen parent;
 	protected final boolean auto;
 	public String hint;
 	public final Consumer<LanguageEntry> callback;
